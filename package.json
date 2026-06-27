@@ -1,0 +1,45 @@
+{
+  "name": "wallpaper-of-the-day",
+  "productName": "Wallpaper of the Day",
+  "version": "1.0.0",
+  "description": "Automatically changes your desktop wallpaper based on the day of the week.",
+  "author": "Amaan Shaikh",
+  "license": "MIT",
+  "main": "electron/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "dependencies": {
+    "image-size": "^2.0.2",
+    "wallpaper": "^7.2.1"
+  },
+  "devDependencies": {
+    "electron": "^41.0.0",
+    "electron-builder": "24.13.3"
+  },
+  "build": {
+    "appId": "com.amaan.wallpaperday",
+    "productName": "Wallpaper of the Day",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**",
+      "!node_modules/.cache/**"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "electron/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Wallpaper of the Day"
+    }
+  }
+}

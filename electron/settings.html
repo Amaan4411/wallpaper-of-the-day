@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Settings</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+body{
+background:#0B0F14;
+color:white;
+padding:30px;
+overflow:hidden;
+}
+
+h1{
+font-size:28px;
+margin-bottom:30px;
+}
+
+.setting{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 0;
+border-bottom:1px solid #252C38;
+}
+
+.setting h2{
+font-size:17px;
+}
+
+.setting p{
+margin-top:6px;
+color:#9AA6B2;
+font-size:13px;
+}
+
+.switch{
+position:relative;
+width:60px;
+height:32px;
+}
+
+.switch input{
+display:none;
+}
+
+.slider{
+position:absolute;
+cursor:pointer;
+inset:0;
+background:#303744;
+transition:.25s;
+border-radius:999px;
+}
+
+.slider:before{
+content:"";
+position:absolute;
+width:24px;
+height:24px;
+left:4px;
+top:4px;
+background:white;
+border-radius:50%;
+transition:.25s;
+}
+
+input:checked+.slider{
+background:#F59E0B;
+}
+
+input:checked+.slider:before{
+transform:translateX(28px);
+}
+
+.footer{
+margin-top:35px;
+display:flex;
+justify-content:flex-end;
+}
+
+button{
+border:none;
+padding:12px 22px;
+background:#F59E0B;
+color:white;
+border-radius:12px;
+cursor:pointer;
+font-weight:700;
+transition:.25s;
+}
+
+button:hover{
+background:#FFB42D;
+}
+
+.toast{
+
+position:fixed;
+
+left:50%;
+bottom:25px;
+
+transform:translateX(-50%) translateY(30px);
+
+background:#181F28;
+
+padding:14px 22px;
+
+border-radius:14px;
+
+border:1px solid #F59E0B;
+
+font-size:14px;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.35s;
+
+box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
+
+.toast.show{
+
+opacity:1;
+
+transform:translateX(-50%) translateY(0);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Settings</h1>
+
+<div class="setting">
+
+<div>
+
+<h2>Start with Windows</h2>
+
+<p>Launch Wallpaper of the Day automatically.</p>
+
+</div>
+
+<label class="switch">
+
+<input id="startup" type="checkbox">
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+<div class="setting">
+
+<div>
+
+<h2>Open Dashboard on Startup</h2>
+
+<p>If disabled the app starts silently in the tray.</p>
+
+</div>
+
+<label class="switch">
+
+<input id="showWindow" type="checkbox">
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+<div class="footer">
+
+<button id="save">
+
+Save
+
+</button>
+
+</div>
+
+<div id="toast" class="toast">
+
+Settings Saved
+
+</div>
+
+<script>
+
+async function load(){
+
+const settings=await window.api.getSettings()
+
+startup.checked=settings.startup
+
+showWindow.checked=settings.showWindowOnStartup
+
+}
+
+load()
+
+save.onclick=async()=>{
+
+await window.api.saveSettings({
+
+startup:startup.checked,
+
+showWindowOnStartup:showWindow.checked
+
+})
+
+const toast=document.getElementById("toast")
+
+toast.classList.add("show")
+
+setTimeout(()=>{
+
+window.close()
+
+},1200)
+
+}
+
+</script>
+
+</body>
+
+</html>
