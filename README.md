@@ -21,7 +21,7 @@ A modern Electron desktop application that automatically changes your Windows wa
 
 ## Dashboard
 
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshots/Dashboard.png)
 
 ---
 
