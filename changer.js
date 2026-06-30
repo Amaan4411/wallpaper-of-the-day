@@ -25,7 +25,11 @@ async function changeWallpaper() {
       return
     }
 
-    await wallpaper.setWallpaper(imagePath)
+    console.log("Changing wallpaper to:", imagePath)
+
+await wallpaper.setWallpaper(imagePath)
+
+console.log("Wallpaper API finished.")
 
     console.log("Wallpaper changed successfully:")
     console.log(imagePath)

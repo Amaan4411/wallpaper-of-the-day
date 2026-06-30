@@ -1,7 +1,7 @@
 {
   "name": "wallpaper-of-the-day",
   "productName": "Wallpaper of the Day",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Automatically changes your desktop wallpaper based on the day of the week.",
   "author": "Amaan Shaikh",
   "license": "MIT",
@@ -22,18 +22,24 @@
   "build": {
     "appId": "com.amaan.wallpaperday",
     "productName": "Wallpaper of the Day",
+
+    "asar": false,
+
     "directories": {
       "output": "dist"
     },
+
     "files": [
       "**/*",
       "!dist/**",
       "!node_modules/.cache/**"
     ],
+
     "win": {
       "target": "nsis",
       "icon": "electron/icon.png"
     },
+
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,

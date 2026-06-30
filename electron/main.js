@@ -349,33 +349,39 @@ ipcMain.on("open-settings", () => {
    WALLPAPER
 =========================== */
 
-ipcMain.on("set-wallpaper", (event, day, imagePath) => {
+ipcMain.on("set-wallpaper", async (event, day, imagePath) => {
+
+    console.log("IPC RECEIVED")
+
+    console.log("Day:", day)
 
     wallpaperLogic(day, imagePath)
 
     const days = [
-
         "sunday",
-
         "monday",
-
         "tuesday",
-
         "wednesday",
-
         "thursday",
-
         "friday",
-
         "saturday"
-
     ]
 
     const today = days[new Date().getDay()]
 
-    if (today === day.toLowerCase())
+    console.log("Today:", today)
 
-        changeWallpaper()
+    console.log("Comparison:", today === day.toLowerCase())
+
+    if (today === day.toLowerCase()) {
+
+        console.log("Calling changeWallpaper()")
+
+        await changeWallpaper()
+
+        console.log("Finished changeWallpaper()")
+
+    }
 
 })
 
